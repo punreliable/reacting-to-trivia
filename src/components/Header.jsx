@@ -1,7 +1,7 @@
 const Header = () => {
 
-    return();
+    return <h1>Header</h1>;
 
 }
 
-export default Quiz;
+export default Header;
