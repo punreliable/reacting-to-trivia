@@ -1,68 +1,47 @@
 import { useState, useCallback } from 'react';
+
 import QUESTIONS from '../questions.js';
+import Question from './Question.jsx';
 import Summary from './Summary.jsx';
-import QuestionTimer from './QuestionTimer.jsx';
+import quizCompleteImg from '../assets/quiz-complete.png';
 
-const Quiz = () => {
+export default function Quiz() {
 
-    const [userAnswers, setUserAnswers] = useState([]);
+  let myQuestions = ['one', 'two', 'three' ];
 
-    const activeQuestionIndex = userAnswers.length;
-    const quizIsComplete = activeQuestionIndex === QUESTIONS.length;
-  
-    const shuffledAnswers = [...QUESTIONS[activeQuestionIndex].answsers];
-    shuffledAnswers.sort( () => Math.random() - 0.5 );
+  const [userAnswers, setUserAnswers] = useState([]);
+  const activeQuestionIndex = userAnswers.length;
+  const quizIsComplete = activeQuestionIndex === QUESTIONS.length;
+
+  const handleSelectAnswer = useCallback(
     
-    const handleSelectAnswer = useCallback(function handleSelectAnswer(
-      selectedAnswer
-    ) {
+    function handleSelectAnswer( selectedAnswer ) {
       setUserAnswers((prevUserAnswers) => {
         return [...prevUserAnswers, selectedAnswer];
-      });
-    },
-    []);
-
-    const handleSkipAnswer = useCallback(
-      () => handleSelectAnswer(null),
-      [handleSelectAnswer]
+      }
     );
-  
-    if (quizIsComplete) {
-      return <Summary userAnswers={userAnswers} />
-    }
-    
-    return (
+  },
+  []);
 
-        <div id="quiz">
+  const handleSkipAnswer = useCallback( () => handleSelectAnswer( null ), [handleSelectAnswer] );
 
-            <QuestionTimer timeout={10000} onTimeout={ handleSelectAnswer(null) } />
-
-            <div id="question">
-
-                <h2>{QUESTIONS[activeQuestionIndex].text}</h2>
-
-                <ul id="answers">
-
-                  { shuffledAnswers([activeQuestionIndex].answers.map(
-                    <li key={answer} className="answer">
-
-                        <button onClick={ () => { handleSelectAnswer( answer ) } }>
-                            {answer}
-                        </button>
-                        
-                    </li>
-
-
-                  ))}
-
-                </ul>
-
-            </div>
-
-        </div>
-
+  if (quizIsComplete) {
+    return(
+      <>
+      <img src={quizCompleteImg} alt="Quiz is Complete Image" />
+    <Summary userAnswers={userAnswers} />
+    </>
     );
+  }
 
+  return (
+    <div id="quiz">
+      <Question
+        key={activeQuestionIndex}
+        index={activeQuestionIndex}
+        onSelectAnswer={handleSelectAnswer}
+        onSkipAnswer={handleSkipAnswer}
+      />
+    </div>
+  );
 }
-
-export default Quiz;
