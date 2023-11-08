@@ -1,17 +1,15 @@
-import Header from './components/Header';
-import Quiz from './components/Quiz';
-import questions from './questions';
+import Header from './components/Header.jsx';
+import Quiz from './components/Quiz.jsx';
 
-
-const App = () => {
-    return(
-        <>
-            <Header />
-            <main>
-                <Quiz />
-            </main>
-        </>
-    )
+function App() {
+  return (
+    <>
+      <Header />
+      <main>
+        <Quiz />
+      </main>
+    </>
+  );
 }
 
 export default App;

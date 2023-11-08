@@ -1,15 +1,11 @@
-import logoIMG from '../assets/quiz-logo.png';
+import logoImg from '../assets/quiz-logo.png';
 
-
-const Header = () => {
-
-    return(
-        <header>
-            <img src={logoIMG} alt="" />
-            <h1>Reacting to Trivia</h1>
-        </header>
-    );
-
+export default function Header() {
+    const title = 'Reacting to Trivia'
+  return (
+    <header>
+      <img src={logoImg} alt="Quiz logo" />
+      <h1>{title}</h1>
+    </header>
+  );
 }
-
-export default Header;
