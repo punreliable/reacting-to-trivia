@@ -1,6 +1,14 @@
+import logoIMG from '../assets/quiz-logo.png';
+
+
 const Header = () => {
 
-    return <h1>Header</h1>;
+    return(
+        <header>
+            <img src={logoIMG} alt="" />
+            <h1>Reacting to Trivia</h1>
+        </header>
+    );
 
 }
 

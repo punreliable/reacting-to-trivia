@@ -1,13 +1,15 @@
 import Header from './components/Header';
 import Quiz from './components/Quiz';
-
+import questions from './questions';
 
 
 const App = () => {
     return(
         <>
             <Header />
-            <Quiz />
+            <main>
+                <Quiz />
+            </main>
         </>
     )
 }
