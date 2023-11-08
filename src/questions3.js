@@ -14,9 +14,9 @@ export default [
       text: 'What is the name of Thor\'s enchanted hammer?',
       answers:
       [
+        'Mjolnir',
         'Vanir',
         'Gungnir',
-        'Mjolnir',
         'Hofund',
       ],
     },
