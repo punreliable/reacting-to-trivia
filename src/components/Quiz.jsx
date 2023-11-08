@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 
-import QUESTIONS from '../questions.js';
+import QUESTIONS from '../questions3.js';
 import Question from './Question.jsx';
 import Summary from './Summary.jsx';
 import quizCompleteImg from '../assets/quiz-complete.png';
@@ -14,7 +14,6 @@ export default function Quiz() {
   const quizIsComplete = activeQuestionIndex === QUESTIONS.length;
 
   const handleSelectAnswer = useCallback(
-    
     function handleSelectAnswer( selectedAnswer ) {
       setUserAnswers((prevUserAnswers) => {
         return [...prevUserAnswers, selectedAnswer];
@@ -23,7 +22,10 @@ export default function Quiz() {
   },
   []);
 
-  const handleSkipAnswer = useCallback( () => handleSelectAnswer( null ), [handleSelectAnswer] );
+  const handleSkipAnswer = useCallback(
+    () => handleSelectAnswer(null),
+    [handleSelectAnswer]
+  );
 
   if (quizIsComplete) {
     return(
